@@ -1,30 +1,32 @@
-#datos estadísticos, los que ustedes quieran....
-#en general son bastante fáciles de hacer, solo es seguir ciertas fórmulas
-
-#mediana, media, desviación estandar, etc...
-#hagan varias funciones sobre eso.
-
-#-------------------------------------------
-#las gráficas si me toca a mi del lado del cliente porque ahí es donde se grafica xd
-
-#datos estadísticos, los que ustedes quieran....
-#en general son bastante fáciles de hacer, solo es seguir ciertas fórmulas
-
-#mediana, media, desviación estandar, etc...
-#hagan varias funciones sobre eso.
-
-#-------------------------------------------
-#las gráficas si me toca a mi del lado del cliente porque ahí es donde se grafica xd
-
-#Moda, media, mediana y valores máximos y mínimos de las listas usadas
 import statistics
 import eel
-import screen1 
+import pandas as pd
+import screen1
 
+#Función que devuelve varios valores estadísticos del csv
 @eel.expose
-def statisticdata():
+def statisticData():
+    #Leemos el csv y creamos una lista de cada columna del csv
+    df_new = pd.read_csv(screen1.fullpath,delimiter=',', header=0)
+    Peaton= df_new['PEATON'].to_list()
+    Automovil=df_new['AUTOMOVIL'].to_list()
+    Campaero=df_new['CAMPAERO'].to_list()
+    Camioneta=df_new['CAMIONETA'].to_list()
+    Micro=df_new['MICRO'].to_list()
+    Buseta=df_new['BUSETA'].to_list()
+    Bus=df_new['BUS'].to_list()
+    Camion=df_new['CAMION'].to_list()
+    Volqueta=df_new['VOLQUETA'].to_list()
+    Moto=df_new['MOTO'].to_list()
+    Bicicleta=df_new['BICICLETA'].to_list()
+    Diurnio_Nocturno=df_new['DIURNIO/NOCTURNO'].to_list()
+    Gravedad=df_new['GRAVEDAD'].to_list()
+
+    #Datos a devolver
     datos={}
-    lists=[('Peaton', screen1.Peaton), ('Automovil', screen1.Automovil), ('Campaero', screen1.Campaero), ('Camioneta', screen1.Camioneta), ('Micro', screen1.Micro), ('Buseta', screen1.Buseta), ('Bus', screen1.Bus), ('Camion', screen1.Camion), ('Volqueta', screen1.Volqueta), ('Moto', screen1.Moto), ('Bicicleta', screen1.Bicicleta)]
+
+    #Vamos recorriendo cada columna y vamos agregando sus valores estadísticos al diccionario
+    lists=[('Peaton', Peaton), ('Automovil', Automovil), ('Campaero', Campaero), ('Camioneta', Camioneta), ('Micro', Micro), ('Buseta', Buseta), ('Bus', Bus), ('Camion', Camion), ('Volqueta', Volqueta), ('Moto', Moto), ('Bicicleta', Bicicleta)]
     for i, lista in lists:
         moda=statistics.mode(lista)
         mediana=statistics.median(lista)
@@ -33,17 +35,12 @@ def statisticdata():
         minimum=min(lista)
         datos[f'Lista {i}']={'Moda':moda,'Mediana':mediana,'Media':media, 'Valor máximo':maximum, 'Valor mínimo':minimum}
     
-    modadiurniou_nocturno=statistics.mode(screen1.Diurnio_Nocturno)
-    modagravedad=statistics.mode(screen1.Gravedad)
+    #Agregamos los valores estadísticos de las dos excepciones que son diruno/nocturno y gravedad, los cuales
+    #manejan valores cualitativos, no cuantitativos
+    modadiurniou_nocturno=statistics.mode(Diurnio_Nocturno)
+    modagravedad=statistics.mode(Gravedad)
     datos[f"Lista {'Diurnio/Nocturno'}"]={'Moda':modadiurniou_nocturno, 'Mediana': 'N/A', 'Media':'N/A','Valor máximo':'N/A','Valor mínimo': 'N/A'}
     datos[f"Lista {'Gravedad'}"]={'Moda':modagravedad, 'Mediana': 'N/A', 'Media':'N/A','Valor máximo':'N/A','Valor mínimo': 'N/A'}
+
+    #retornamos los datos
     return datos
-
-
-
-
-
-#datosestadisticos=statisticdata()
-#print(datosestadisticos)
-
-#Solo se calcula la moda de las listas de Diurnio/Nocturno y gravedad porque son listas que no contienen
