@@ -1,12 +1,4 @@
-#Indicadores:
-#En esta parte van a entrenar el modelo y a hacer todo sobre
-#la regresión logística... y enseguida sacan indicadores los cuáles
-#los van a retornar en funciones con el nombre que quieran.
-
-#----------------------------------------
-# getPrediction(columnas independientes...): -> str ("1" o "2" o "3")
-
-#import eel
+import eel
 import pandas as pd
 import numpy as np
 import screen1
@@ -70,6 +62,7 @@ def actoresViales():
 
     return actoresViales
 
+@eel
 def getPrediction(a_viales : int, dn : int):
     # Variables dependientes e independientes para el training test
     x1, x2 = actoresViales(), cambiar_datos_dn()
@@ -91,28 +84,22 @@ def getPrediction(a_viales : int, dn : int):
     # Se realizan las predicciones
     y_predict = r_logistica.predict(datos_p)
 
-    # Imprimir la lista de los datos de prueba
-    print("Datos de prueba utilizados:")
-    print(datos_p)
-
-    print("Las predicciones de los datos de prueba son:")
-    print(y_predict)
-
-    print("Las probabilidades en cada caso eran:")
-    print(r_logistica.predict_proba(datos_p))
+    # Se realizan las probabilades de cada caso
+    pb = r_logistica.predict_proba(datos_p)
     
     # Presición del modelo
-    print("La precisión del modelo es:")
-    print(r_logistica.score(x_test, y_test))
+    p = r_logistica.score(x_test, y_test)
 
     # Intercepciones del modelo
-    print("La intercepción del modelo es:")
-    print(r_logistica.intercept_)
+    i = r_logistica.intercept_
     
     # Coeficientes del modelo
-    print("El coeficiente del modelo es:")
-    print(r_logistica.coef_)
+    c = r_logistica.coef_
 
-    return y_predict
-
-prueba = getPrediction(8,1)
+    return {
+        "Prediccion" : y_predict,
+        "Probabilidades" : pb,
+        "Precisión" : p,
+        "Intercepciones" : i,
+        "Coeficientes" : c
+    }
