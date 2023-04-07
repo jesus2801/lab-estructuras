@@ -1,28 +1,25 @@
 import csv
 import eel
-import numpy as np
 import pandas as pd
 import os
 
 #creamos la ruta absoluta del archivo csv
-absoultepath=os.path.dirname(__file__)
-relativepath='./files/myfile.csv'
-fullpath=os.path.join(absoultepath,relativepath)
-#leemos 
-df_new=pd.read_csv(fullpath,delimiter=';', header=0)
+absoultepath = os.path.dirname(__file__)
+relativepath = './files/myfile.csv'
+fullpath = os.path.join(absoultepath, relativepath)
 
 #Funcion que recibe un rango de filas y las muestra a través de una matriz. La función usa el archivo .csv con las columnas a utilizar
 @eel.expose
 def gettable(start: int, end:int):
     data=[]
     #Lectura del archivo
-    with open(fullpath,newline='',encoding='utf-8') as csvfile:
-        reader=csv.reader(csvfile)
+    with open(fullpath, newline='',encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile)
         for i, row in enumerate(reader):
             if i>=start and i<=end:
                data.append(row)
-    matriz=np.array(data)
-    return matriz
+    return data
+
  #Se recibe un indicador correspondiente a la columna orden del archivo .csv y se elimina la fila correspondiente a él
 @eel.expose
 def deleterecord(orden:int):
@@ -82,4 +79,4 @@ def printRecord(orden:int):
                 #Retornamos un diccionario que nos indique que se encontró la fila y la muestre
                 return {'error': False, 'record': fila}
         #En caso de no encontrarse el indicador igualmente se retorna un diccionario pero indicando que no existe tal registro en el archivo    
-        return { 'error': True, 'msg': 'not found'
+        return { 'error': True, 'msg': 'not found'}

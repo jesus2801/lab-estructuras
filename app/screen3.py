@@ -5,3 +5,114 @@
 
 #----------------------------------------
 # getPrediction(columnas independientes...): -> str ("1" o "2" o "3")
+
+#import eel
+import pandas as pd
+import numpy as np
+import screen1
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
+#Función que suma los actores viales y los guarda en una lista
+def cambiar_datos_Gravedad():
+    #Leemos el csv y creamos una lista de las columnas del csv a la que le convertiremos los valores
+    df_new = pd.read_csv(screen1.fullpath,delimiter=',', header=0)
+    Gravedad = df_new['GRAVEDAD'].to_list()
+    
+    Gravedad_new = []
+
+    # Reemplazamos los valores de la columna "gravedad" en la lista creada
+    for elemento in Gravedad:
+        if elemento == "Con Heridos":
+            Gravedad_new.append(0)
+        elif elemento == "Solo Daños":
+            Gravedad_new.append(1)
+        else:
+            Gravedad_new.append(2)
+
+    return Gravedad_new
+
+def cambiar_datos_dn():
+    #Leemos el csv y creamos una lista de las columnas del csv a la que le convertiremos los valores
+    df_new = pd.read_csv(screen1.fullpath,delimiter=',', header=0)
+    Diurnio_Nocturno = df_new['DIURNIO/NOCTURNO'].to_list()
+    
+    DN_new = []
+    
+    # Reemplazamos los valores de la columna "diurno/nocturno" en la lista creada
+    for element in Diurnio_Nocturno:
+        if element == "Diurno":
+            DN_new.append(0)
+        else:
+            DN_new.append(1)
+
+    return DN_new
+
+#Funcion que suma los actores viales y los guarda en una lista
+def actoresViales():
+    #Leemos el csv y guardamos las columnas que necesitamos (actores viales)
+    df_new = pd.read_csv(screen1.fullpath,delimiter=',', header=0)
+
+    Peaton= df_new['PEATON'].to_list()
+    Automovil=df_new['AUTOMOVIL'].to_list()
+    Campaero=df_new['CAMPAERO'].to_list()
+    Camioneta=df_new['CAMIONETA'].to_list()
+    Micro=df_new['MICRO'].to_list()
+    Buseta=df_new['BUSETA'].to_list()
+    Bus=df_new['BUS'].to_list()
+    Camion=df_new['CAMION'].to_list()
+    Volqueta=df_new['VOLQUETA'].to_list()
+    Moto=df_new['MOTO'].to_list()
+    Bicicleta=df_new['BICICLETA'].to_list()
+
+    #En la lista actoresViales guardamos el resultado la funcion sum aplicada a cada tupla generada con los datos de las listas
+    actoresViales = list(map(sum, zip(Peaton, Automovil, Campaero, Camioneta, Micro, Buseta, Bus, Camion, Volqueta, Moto, Bicicleta)))
+
+    return actoresViales
+
+def getPrediction(a_viales : int, dn : int):
+    # Variables dependientes e independientes para el training test
+    x1, x2 = actoresViales(), cambiar_datos_dn()
+    x = np.column_stack((x1, x2))
+    y = cambiar_datos_Gravedad()
+
+    #Datos a predecir
+    datos_p = np.column_stack((a_viales, dn))
+
+    # Dividir los datos en train(90%) y test(10%)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.1)
+
+    # Instanciamos variable de regresión logistica
+    r_logistica = LogisticRegression()
+
+    # Se ajusta el modelo 
+    r_logistica.fit(x_train, y_train)
+
+    # Se realizan las predicciones
+    y_predict = r_logistica.predict(datos_p)
+
+    # Imprimir la lista de los datos de prueba
+    print("Datos de prueba utilizados:")
+    print(datos_p)
+
+    print("Las predicciones de los datos de prueba son:")
+    print(y_predict)
+
+    print("Las probabilidades en cada caso eran:")
+    print(r_logistica.predict_proba(datos_p))
+    
+    # Presición del modelo
+    print("La precisión del modelo es:")
+    print(r_logistica.score(x_test, y_test))
+
+    # Intercepciones del modelo
+    print("La intercepción del modelo es:")
+    print(r_logistica.intercept_)
+    
+    # Coeficientes del modelo
+    print("El coeficiente del modelo es:")
+    print(r_logistica.coef_)
+
+    return y_predict
+
+prueba = getPrediction(8,1)
