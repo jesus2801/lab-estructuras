@@ -4,6 +4,9 @@ import numpy as np
 import screen1
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, roc_auc_score
+import statsmodels.api as sm
+
 
 #Función que suma los actores viales y los guarda en una lista
 def cambiar_datos_Gravedad():
@@ -96,10 +99,26 @@ def getPrediction(a_viales : int, dn : int):
     # Coeficientes del modelo
     c = r_logistica.coef_
 
+    #Calculo de las métricas
+    #1. Error cuadratico medio
+    errorCM = mean_squared_error(y_test, y_predict)
+
+    #2. P-value
+    x_train_const = sm.add_constant(x_train)
+    model = sm.Logit(y_train, x_train_const)
+    results = model.fit()
+    p_value = results.pvalues[1]
+
+    #3. AUC: area bajo la curva, mide el desempeño
+    auc = roc_auc_score(y_test, r_logistica.predict_proba(x_test)[:, 1])
+
     return {
         "Prediccion" : y_predict,
         "Probabilidades" : pb,
         "Precisión" : p,
         "Intercepciones" : i,
-        "Coeficientes" : c
+        "Coeficientes" : c,
+        "Error cuadratico medio": errorCM,
+        "P-value" : p_value,
+        "AUC": auc
     }
