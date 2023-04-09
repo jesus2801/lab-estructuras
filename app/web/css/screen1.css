@@ -1,0 +1,117 @@
+.table {
+  width: 80%;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  overflow: scroll;
+}
+
+.table::-webkit-scrollbar {
+  width: 8px; /* Tamaño del scroll en vertical */
+  height: 8px; /* Tamaño del scroll en horizontal */
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+.table::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.table::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.table::-webkit-scrollbar-thumb:active {
+  background-color: #999999;
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+.table::-webkit-scrollbar-track {
+  background: #e1e1e1;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo cuando esté en active o hover */
+.table::-webkit-scrollbar-track:hover,
+.table::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}
+
+.table .header {
+  height: 80px;
+  background-color: #2083fb;
+  display: grid;
+  grid-template-columns: repeat(14, 220px);
+
+  padding: 23px 20px;
+}
+
+.table .body {
+  height: 370px;
+}
+
+.table .header p {
+  color: #ffffff;
+  text-align: center;
+}
+
+.table .body .element {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(14, 220px);
+  text-align: center;
+  padding: 15px 20px;
+}
+
+.table .body .element:hover {
+  background-color: #2083fb;
+}
+
+.table .body .element:hover p {
+  color: #fff;
+}
+
+.bxs-trash-alt {
+  color: #0f253f;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.page-buttons {
+  margin-top: 20px;
+  display: flex;
+  -webkit-box-shadow: 1px 2px 8px 0px rgba(179, 179, 179, 1);
+  -moz-box-shadow: 1px 2px 8px 0px rgba(179, 179, 179, 1);
+  box-shadow: 1px 2px 8px 0px rgba(179, 179, 179, 1);
+}
+
+.page-buttons p {
+  padding: 10px 20px;
+}
+
+.page-buttons .arrow-button:hover {
+    cursor: pointer;
+    background-color: #2083fb;
+    color: #fff;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filters input {
+  margin-right: 15px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
