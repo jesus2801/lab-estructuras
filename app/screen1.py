@@ -4,19 +4,17 @@ import pandas as pd
 import os
 
 #creamos la ruta absoluta del archivo csv
-absoultepath=os.path.dirname(__file__)
-relativepath='./files/myfile.csv'
-fullpath=os.path.join(absoultepath,relativepath)
-#leemos 
-df_new=pd.read_csv(fullpath,delimiter=';', header=0)
+absoultepath = os.path.dirname(__file__)
+relativepath = './files/myfile.csv'
+fullpath = os.path.join(absoultepath, relativepath)
 
 #Funcion que recibe un rango de filas y las muestra a través de una matriz. La función usa el archivo .csv con las columnas a utilizar
 @eel.expose
 def gettable(start: int, end: int):
     data=[]
     #Lectura del archivo
-    with open(fullpath,newline='',encoding='utf-8') as csvfile:
-        reader=csv.reader(csvfile)
+    with open(fullpath, newline='',encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile)
         for i, row in enumerate(reader):
             if(i == 0): data.append(row)
             if i>=start and i<=end:
