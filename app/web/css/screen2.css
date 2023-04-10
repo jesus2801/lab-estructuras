@@ -1,0 +1,61 @@
+.statistics {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.statistics h2 {
+  font-size: 35px;
+}
+
+.statistics .cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 25px;
+  margin-bottom: 65px;
+}
+
+.statistics h2:nth-child(1) {
+  margin-top: 45px;
+}
+
+.statistics .cards .card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  -webkit-box-shadow: 1px 2px 11px 0px rgba(209, 209, 209, 1);
+  -moz-box-shadow: 1px 2px 11px 0px rgba(209, 209, 209, 1);
+  box-shadow: 1px 2px 11px 0px rgba(209, 209, 209, 1);
+  padding: 10px 20px;
+}
+
+.statistics .cards .card p:nth-child(1) {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #6d6d6d;
+  font-weight: 500;
+}
+
+.statistics .cards .card p:nth-child(2) {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.statistics .cards .card:nth-child(odd) i {
+  font-size: 25px;
+  color: #215bf3;
+}
+
+.statistics .cards .card:nth-child(even) i {
+  font-size: 25px;
+  color: #f35221;
+}
+
+.red {
+  color: #f35221;
+}

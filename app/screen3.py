@@ -44,6 +44,7 @@ def cambiar_datos_dn():
     return DN_new
 
 #Funcion que suma los actores viales y los guarda en una lista
+@eel.expose
 def actoresViales():
     #Leemos el csv y guardamos las columnas que necesitamos (actores viales)
     df_new = pd.read_csv(screen1.fullpath,delimiter=',', header=0)
@@ -65,7 +66,7 @@ def actoresViales():
 
     return actoresViales
 
-@eel
+@eel.expose
 def getPrediction(a_viales : int, dn : int):
     # Variables dependientes e independientes para el training test
     x1, x2 = actoresViales(), cambiar_datos_dn()

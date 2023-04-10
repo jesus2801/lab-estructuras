@@ -9,8 +9,8 @@
     />
     <title>Laboratorio Estructuras</title>
     <link rel="stylesheet" href="./css/sidebar.css" />
-    <link rel="stylesheet" href="./css/screen1.css" />
     <link rel="stylesheet" href="./css/select.css" />
+    <link rel="stylesheet" href="./css/screen2.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -18,7 +18,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script src="https://unpkg.com/vanilla-context-menu@1.4.1/dist/vanilla-context-menu.js"></script>
     <script type="text/javascript" src="/eel.js"></script>
   </head>
 
@@ -36,7 +35,7 @@
           <span class="tooltip">Search</span>
         </li>
         <li class="list-item">
-          <a href="#">
+          <a href="./main.html">
             <i class="bx bx-table"></i>
             <span class="links_name">Tabla principal</span>
           </a>
@@ -50,7 +49,7 @@
           <span class="tooltip">Estadísticas</span>
         </li>
         <li class="list-item">
-          <a href="./prediccion.html">
+          <a href="#">
             <i class="bx bxs-network-chart"></i>
             <span class="links_name">Predecir</span>
           </a>
@@ -71,47 +70,25 @@
     </div>
 
     <section class="home-section">
-      <div class="filters">
-        <input type="text" placeholder="Search" id="filter" />
-        <!--SELECT-->
-        <label class="select" for="slct">
-          <select id="slct" required="required">
-            <option value="" selected="selected">Select option</option>
-            <option value="0">ORDEN</option>
-            <option value="1">PEATON</option>
-            <option value="2">AUTOMOVIL</option>
-            <option value="3">CAMPAERO</option>
-            <option value="4">MICRO</option>
-            <option value="5">BUSETA</option>
-            <option value="6">CAMION</option>
-            <option value="7">VOLQUETA</option>
-            <option value="8">MOTO</option>
-            <option value="9">BICICLETA</option>
-            <option value="10">DIURNO/NOCTURNO</option>
-            <option value="11">GRAVEDAD</option>
-          </select>
-          <svg>
-            <use xlink:href="#select-arrow-down"></use>
-          </svg>
-        </label>
-        <!-- SVG Sprites-->
-        <svg class="sprites">
-          <symbol id="select-arrow-down" viewbox="0 0 10 6">
-            <polyline points="1 1 5 5 9 1"></polyline>
-          </symbol>
+      <!--SELECT-->
+      <label class="select" for="slct">
+        <select id="slct" required="required">
+          <option value="Diurno" selected="selected">Diurno</option>
+          <option value="Nocturno">Nocturno</option>
+        </select>
+        <svg>
+          <use xlink:href="#select-arrow-down"></use>
         </svg>
-      </div>
-
-      <div class="table"></div>
-
-      <div class="page-buttons">
-        <p class="arrow-button" id="left-button"><<</p>
-        <p id="page-number">1</p>
-        <p class="arrow-button" id="right-button">>></p>
-      </div>
+      </label>
+      <!-- SVG Sprites-->
+      <svg class="sprites">
+        <symbol id="select-arrow-down" viewbox="0 0 10 6">
+          <polyline points="1 1 5 5 9 1"></polyline>
+        </symbol>
+      </svg>
     </section>
   </body>
-  
+
   <script src="./js/pythonIsWorking.js"></script>
   <script src="./js/sidebar.js"></script>
   <script src="./js/table.js"></script>

@@ -33,14 +33,14 @@ def statisticData():
         media=statistics.mean(lista)
         maximum=max(lista)
         minimum=min(lista)
-        datos[f'Lista {i}']={'Moda':moda,'Mediana':mediana,'Media':media, 'Valor máximo':maximum, 'Valor mínimo':minimum}
+        datos[f'{i}']={'Moda':moda,'Mediana':mediana,'Media':media, 'máximo':maximum, 'mínimo':minimum}
     
     #Agregamos los valores estadísticos de las dos excepciones que son diruno/nocturno y gravedad, los cuales
     #manejan valores cualitativos, no cuantitativos
     modadiurniou_nocturno=statistics.mode(Diurnio_Nocturno)
     modagravedad=statistics.mode(Gravedad)
-    datos[f"Lista {'Diurnio/Nocturno'}"]={'Moda':modadiurniou_nocturno, 'Mediana': 'N/A', 'Media':'N/A','Valor máximo':'N/A','Valor mínimo': 'N/A'}
-    datos[f"Lista {'Gravedad'}"]={'Moda':modagravedad, 'Mediana': 'N/A', 'Media':'N/A','Valor máximo':'N/A','Valor mínimo': 'N/A'}
+    datos[f"{'Diurnio/Nocturno'}"]={'Moda':modadiurniou_nocturno, 'Mediana': 'N/A', 'Media':'N/A','máximo':'N/A','mínimo': 'N/A'}
+    datos[f"{'Gravedad'}"]={'Moda':modagravedad, 'Mediana': 'N/A', 'Media':'N/A','máximo':'N/A','mínimo': 'N/A'}
 
     #retornamos los datos
     return datos
