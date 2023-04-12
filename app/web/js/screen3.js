@@ -24,6 +24,12 @@ function unfill(elements) {
   for (let i = 0, n = elements.length; i < n; i++) elements[i].value = 0;
 }
 
+const predicciones = {
+  0: "Con Heridos",
+  1: "Solo Daños",
+  2: "Con Muertos",
+};
+
 submitButton.addEventListener("click", async () => {
   values = [
     peatonI.value.trim(),
@@ -67,8 +73,17 @@ submitButton.addEventListener("click", async () => {
   }
 });
 
-prediccionI.addEventListener('click',async ()=> {
+prediccionI.addEventListener("click", async () => {
   d = horario_prediccionI.value.trim();
-  data = await eel.getPrediction(parseInt(actoresI.value.trim()), d == "Diurno" ? 0 : 1)();
-  console.log(data)
-})
+  console.log(parseInt(actoresI.value.trim()), d == "Diurno" ? 0 : 1);
+  data = await eel.getPrediction(
+    parseInt(actoresI.value.trim()),
+    d == "Diurno" ? 0 : 1
+  )();
+
+  Swal.fire(
+    "Predicción",
+    `La predicción es: "${predicciones[data.Prediccion]}"`,
+    "success"
+  );
+});

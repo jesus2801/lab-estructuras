@@ -51,7 +51,6 @@ async function main() {
 
   //estadísticas
   const data = await eel.statisticData()();
-  console.log(data);
   for (column in data) {
     const title = document.createElement("h2");
     title.innerText = column;
@@ -67,7 +66,9 @@ async function main() {
         <p>${statistic}</p>
         <p>${
           data[column][statistic] != "N/A"
-            ? parseFloat(data[column][statistic]).toFixed(3)
+            ? typeof data[column][statistic] === "string"
+              ? data[column][statistic]
+              : parseFloat(data[column][statistic]).toFixed(3)
             : "<span class='red'>N/A</span>"
         }</p>
       </div>
