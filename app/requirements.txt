@@ -1,0 +1,6 @@
+eel
+pandas
+statistics
+numpy
+scikit-learn
+statsmodels

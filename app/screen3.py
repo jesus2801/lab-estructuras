@@ -43,6 +43,7 @@ def cambiar_datos_dn():
     return DN_new
 
 #Funcion que suma los actores viales y los guarda en una lista
+@eel.expose
 def actoresViales():
     #Leemos el csv y guardamos las columnas que necesitamos (actores viales)
     df_new = pd.read_csv(screen1.fullpath,delimiter=',', header=0)
@@ -121,12 +122,12 @@ def getPrediction(a_viales : int, dn : int):
     e = cm[1,1] / (cm[1,0] + cm[1,1] + cm[1,2])
 
     return {
-        "Prediccion" : y_predict,
-        "Probabilidades" : pb,
+        "Prediccion" : list(map(int, y_predict)),
+        "Probabilidades" : list(map(float, list(pb[0]))),
         "Precisión" : p,
-        "Intercepciones" : i,
-        "Coeficientes" : c,
-        "Matriz C" : cm,
+        "Intercepciones" : list(map(float, i)),
+        "Coeficientes" : list(map(float, np.concatenate(c))),
+        "Matriz C" : list(map(int, np.concatenate(cm))),
         "Sensibilidad" : s,
         "Especificidad": e
     }

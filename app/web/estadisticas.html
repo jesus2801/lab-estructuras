@@ -8,9 +8,6 @@
       rel="stylesheet"
     />
     <title>Laboratorio Estructuras</title>
-    <link rel="stylesheet" href="./css/sidebar.css" />
-    <link rel="stylesheet" href="./css/screen1.css" />
-    <link rel="stylesheet" href="./css/select.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -18,8 +15,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script src="https://unpkg.com/vanilla-context-menu@1.4.1/dist/vanilla-context-menu.js"></script>
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css//screen2.css" />
     <script type="text/javascript" src="/eel.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
   </head>
 
   <body>
@@ -36,14 +35,14 @@
           <span class="tooltip">Search</span>
         </li>
         <li class="list-item">
-          <a href="#">
+          <a href="./main.html">
             <i class="bx bx-table"></i>
             <span class="links_name">Tabla principal</span>
           </a>
           <span class="tooltip">Tabla principal</span>
         </li>
         <li class="list-item">
-          <a href="./estadisticas.html">
+          <a href="#">
             <i class="bx bx-bar-chart-alt"></i>
             <span class="links_name">Estadísticas</span>
           </a>
@@ -71,48 +70,13 @@
     </div>
 
     <section class="home-section">
-      <div class="filters">
-        <input type="text" placeholder="Search" id="filter" />
-        <!--SELECT-->
-        <label class="select" for="slct">
-          <select id="slct" required="required">
-            <option value="" selected="selected">Select option</option>
-            <option value="0">ORDEN</option>
-            <option value="1">PEATON</option>
-            <option value="2">AUTOMOVIL</option>
-            <option value="3">CAMPAERO</option>
-            <option value="4">MICRO</option>
-            <option value="5">BUSETA</option>
-            <option value="6">CAMION</option>
-            <option value="7">VOLQUETA</option>
-            <option value="8">MOTO</option>
-            <option value="9">BICICLETA</option>
-            <option value="10">DIURNO/NOCTURNO</option>
-            <option value="11">GRAVEDAD</option>
-          </select>
-          <svg>
-            <use xlink:href="#select-arrow-down"></use>
-          </svg>
-        </label>
-        <!-- SVG Sprites-->
-        <svg class="sprites">
-          <symbol id="select-arrow-down" viewbox="0 0 10 6">
-            <polyline points="1 1 5 5 9 1"></polyline>
-          </symbol>
-        </svg>
-      </div>
-
-      <div class="table"></div>
-
-      <div class="page-buttons">
-        <p class="arrow-button" id="left-button"><<</p>
-        <p id="page-number">1</p>
-        <p class="arrow-button" id="right-button">>></p>
-      </div>
+      <h2>Histórico de actores viales</h2>
+      <div style="width: 800px"><canvas id="chart"></canvas></div>
+      <div class="statistics"></div>
     </section>
   </body>
-  
+
   <script src="./js/pythonIsWorking.js"></script>
   <script src="./js/sidebar.js"></script>
-  <script src="./js/table.js"></script>
+  <script src="./js/screen2.js"></script>
 </html>
