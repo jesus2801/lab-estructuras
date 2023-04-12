@@ -1,0 +1,184 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Laboratorio Estructuras</title>
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/screen1.css" />
+    <link rel="stylesheet" href="./css/select.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://unpkg.com/vanilla-context-menu@1.4.1/dist/vanilla-context-menu.js"></script>
+    <script type="text/javascript" src="/eel.js"></script>
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <div class="logo-details">
+        <i class="bx bxl-python icon"></i>
+        <div class="logo_name">Estructuras</div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <li>
+          <i class="bx bx-search"></i>
+          <input type="text" id="search-input" placeholder="Search..." />
+          <span class="tooltip">Search</span>
+        </li>
+        <li class="list-item">
+          <a href="#">
+            <i class="bx bx-table"></i>
+            <span class="links_name">Tabla principal</span>
+          </a>
+          <span class="tooltip">Tabla principal</span>
+        </li>
+        <li class="list-item">
+          <a href="#">
+            <i class="bx bxs-copy-alt"></i>
+            <span class="links_name">Tabla generada</span>
+          </a>
+          <span class="tooltip">Tabla generada</span>
+        </li>
+        <li class="list-item">
+          <a href="#">
+            <i class="bx bx-bar-chart-alt"></i>
+            <span class="links_name">Estadísticas</span>
+          </a>
+          <span class="tooltip">Estadísticas</span>
+        </li>
+        <li class="list-item">
+          <a href="#">
+            <i class="bx bxs-network-chart"></i>
+            <span class="links_name">Predecir</span>
+          </a>
+          <span class="tooltip">Predecir</span>
+        </li>
+
+        <li class="profile">
+          <div class="profile-details">
+            <img src="./img/profile.jpeg" alt="profileImg" />
+            <div class="name_job">
+              <div class="name">Margarita G.</div>
+              <div class="job">Ph. D</div>
+            </div>
+          </div>
+          <i class="bx bx-log-out" id="log_out"></i>
+        </li>
+      </ul>
+    </div>
+    <section class="home-section">
+      <div class="filters">
+        <input type="text" placeholder="Search" id="filter"/>
+        <!--SELECT-->
+        <label class="select" for="slct">
+          <select id="slct" required="required">
+            <option value="" selected="selected">
+              Select option
+            </option>
+            <option value="0">ORDEN</option>
+            <option value="1">PEATON</option>
+            <option value="2">AUTOMOVIL</option>
+            <option value="3">CAMPAERO</option>
+            <option value="4">MICRO</option>
+            <option value="5">BUSETA</option>
+            <option value="6">CAMION</option>
+            <option value="7">VOLQUETA</option>
+            <option value="8">MOTO</option>
+            <option value="9">BICICLETA</option>
+            <option value="10">DIURNO/NOCTURNO</option>
+            <option value="11">GRAVEDAD</option>
+          </select>
+          <svg>
+            <use xlink:href="#select-arrow-down"></use>
+          </svg>
+        </label>
+        <!-- SVG Sprites-->
+        <svg class="sprites">
+          <symbol id="select-arrow-down" viewbox="0 0 10 6">
+            <polyline points="1 1 5 5 9 1"></polyline>
+          </symbol>
+        </svg>
+      </div>
+
+      <div class="table">
+        <div class="header">
+          <p>ORDEN</p>
+          <p>FECHA</p>
+          <p>AÑO</p>
+          <p>MES</p>
+          <p>DÍA</p>
+          <p>GRAVEDAD</p>
+          <p>PEATON</p>
+          <p>AUTOMOVIL</p>
+          <p>CAMPAERO</p>
+          <p>CAMIONETA</p>
+          <p>MICRO</p>
+          <p>BUSETA</p>
+          <p>BUS</p>
+          <p>CAMION</p>
+          <p>VOLQUETA</p>
+          <p>MOTO</p>
+          <p>BICICLETA</p>
+          <p>OTRO</p>
+          <p>VIA 1</p>
+          <p>BARRIO</p>
+          <p>HORA</p>
+          <p>ENTIDAD</p>
+          <p>nombre comuna</p>
+          <p>Propietario de Vehículo</p>
+          <p>DIURNO/NOCTURNO</p>
+          <p>HORA RESTRICCIÓN MOTO</p>
+        </div>
+
+        <div class="body">
+          <div class="element" id="dato">
+            <p>Dato 1</p>
+            <p>Dato 2</p>
+            <p>Dato 3</p>
+            <p>Dato 4</p>
+            <p>Dato 5</p>
+            <p>Dato 6</p>
+            <p>Dato 7</p>
+            <p>Dato 8</p>
+            <p>Dato 9</p>
+            <p>Dato 10</p>
+            <p>Dato 11</p>
+            <p>Dato 12</p>
+            <p>Dato 13</p>
+            <p>Dato 14</p>
+            <p>Dato 15</p>
+            <p>Dato 16</p>
+            <p>Dato 17</p>
+            <p>Dato 18</p>
+            <p>Dato 19</p>
+            <p>Dato 20</p>
+            <p>Dato 21</p>
+            <p>Dato 22</p>
+            <p>Dato 23</p>
+            <p>Dato 24</p>
+            <p>Dato 25</p>
+            <p>Dato 26</p>
+          </div>
+        </div>
+      </div>
+      <div class="page-buttons">
+        <p class="arrow-button" id="left-button"><<</p>
+        <p id="page-number">1</p>
+        <p class="arrow-button" id="right-button">>></p>
+      </div>
+    </section>
+  </body>
+  <script src="./js/pythonIsWorking.js"></script>
+  <script src="./js/sidebar.js"></script>
+  <script src="./js/table.js"></script>
+</html>

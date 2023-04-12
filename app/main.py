@@ -1,4 +1,5 @@
 import eel
+import screen1
 
 @eel.expose
 def pythonIsWorking():

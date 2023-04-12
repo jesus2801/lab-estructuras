@@ -67,28 +67,40 @@ def actoresViales():
 @eel.expose 
 def getPrediction(a_viales : int, dn : int):
     # Variables dependientes e independientes para el training test
+
     x1, x2 = actoresViales(), cambiar_datos_dn()
-    x = np.column_stack((x1, x2))
-    y = cambiar_datos_Gravedad()
+    x11 = x1[:int(len(x1) / 2)]
+    x12 = x1[int(len(x1) / 2):]
+    x21 = x2[:int(len(x2) / 2)]
+    x22 = x2[int(len(x2) / 2):]
+
+    x = np.column_stack((x11, x21))
+    yn = cambiar_datos_Gravedad()
+    y = yn[:int(len(yn) / 2)]
+
 
     #Datos a predecir
     datos_p = np.column_stack((a_viales, dn))
+    datosmetricas = np.column_stack((x12, x22))
 
     # Dividir los datos en train(90%) y test(10%)
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.1)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.9)
+
 
     # Instanciamos variable de regresión logistica
     r_logistica = LogisticRegression()
 
-    # Se ajusta el modelo 
+    # Se ajusta el modelo
     r_logistica.fit(x_train, y_train)
 
     # Se realizan las predicciones
     y_predict = r_logistica.predict(datos_p)
+    y_predict2 = r_logistica.predict(datosmetricas)
+    y_predict2 = y_predict2[:len(y_predict2) - 1909]
 
     # Se realizan las probabilades de cada caso
     pb = r_logistica.predict_proba(datos_p)
-    
+
     # Presición del modelo
     p = r_logistica.score(x_test, y_test)
 
@@ -107,7 +119,6 @@ def getPrediction(a_viales : int, dn : int):
     # Calcular la sensibilidad y especificidad
     s = cm[0,0] / (cm[0,0] + cm[0,1] + cm[0,2])
     e = cm[1,1] / (cm[1,0] + cm[1,1] + cm[1,2])
-
 
     return {
         "Prediccion" : y_predict,
