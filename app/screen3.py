@@ -4,8 +4,7 @@ import numpy as np
 import screen1
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, roc_auc_score
-import statsmodels.api as sm
+from sklearn.metrics import confusion_matrix
 
 
 #Función que suma los actores viales y los guarda en una lista
@@ -66,31 +65,43 @@ def actoresViales():
 
     return actoresViales
 
-@eel.expose
+@eel.expose 
 def getPrediction(a_viales : int, dn : int):
     # Variables dependientes e independientes para el training test
+
     x1, x2 = actoresViales(), cambiar_datos_dn()
-    x = np.column_stack((x1, x2))
-    y = cambiar_datos_Gravedad()
+    x11 = x1[:int(len(x1) / 2)]
+    x12 = x1[int(len(x1) / 2):]
+    x21 = x2[:int(len(x2) / 2)]
+    x22 = x2[int(len(x2) / 2):]
+
+    x = np.column_stack((x11, x21))
+    yn = cambiar_datos_Gravedad()
+    y = yn[:int(len(yn) / 2)]
+
 
     #Datos a predecir
     datos_p = np.column_stack((a_viales, dn))
+    datosmetricas = np.column_stack((x12, x22))
 
     # Dividir los datos en train(90%) y test(10%)
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.1)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.9)
+
 
     # Instanciamos variable de regresión logistica
     r_logistica = LogisticRegression()
 
-    # Se ajusta el modelo 
+    # Se ajusta el modelo
     r_logistica.fit(x_train, y_train)
 
     # Se realizan las predicciones
     y_predict = r_logistica.predict(datos_p)
+    y_predict2 = r_logistica.predict(datosmetricas)
+    y_predict2 = y_predict2[:len(y_predict2) - 1909]
 
     # Se realizan las probabilades de cada caso
     pb = r_logistica.predict_proba(datos_p)
-    
+
     # Presición del modelo
     p = r_logistica.score(x_test, y_test)
 
@@ -99,19 +110,16 @@ def getPrediction(a_viales : int, dn : int):
     
     # Coeficientes del modelo
     c = r_logistica.coef_
+    
+    # Realizar las predicciones en los datos de prueba
+    y_p = r_logistica.predict(x_test)
 
-    #Calculo de las métricas
-    #1. Error cuadratico medio
-    #errorCM = mean_squared_error(y_test, y_predict)
+    # Calcular la matriz de confusión
+    cm = confusion_matrix(y_test, y_p)
 
-    # #2. P-value
-    # x_train_const = sm.add_constant(x_train)
-    # model = sm.Logit(y_train, x_train_const)
-    # results = model.fit()
-    # p_value = results.pvalues[1]
-
-    #3. AUC: area bajo la curva, mide el desempeño
-    auc = roc_auc_score(y_test, r_logistica.predict_proba(x_test)[:, 1])
+    # Calcular la sensibilidad y especificidad
+    s = cm[0,0] / (cm[0,0] + cm[0,1] + cm[0,2])
+    e = cm[1,1] / (cm[1,0] + cm[1,1] + cm[1,2])
 
     return {
         "Prediccion" : y_predict,
@@ -119,9 +127,9 @@ def getPrediction(a_viales : int, dn : int):
         "Precisión" : p,
         "Intercepciones" : i,
         "Coeficientes" : c,
-        #"Error cuadratico medio": errorCM,
-        #"P-value" : p_value,
-        "AUC": auc
+        "Matriz C" : cm,
+        "Sensibilidad" : s,
+        "Especificidad": e
     }
 
 print(getPrediction(4, 0))
