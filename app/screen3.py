@@ -102,13 +102,13 @@ def getPrediction(a_viales : int, dn : int):
 
     #Calculo de las métricas
     #1. Error cuadratico medio
-    errorCM = mean_squared_error(y_test, y_predict)
+    #errorCM = mean_squared_error(y_test, y_predict)
 
-    #2. P-value
-    x_train_const = sm.add_constant(x_train)
-    model = sm.Logit(y_train, x_train_const)
-    results = model.fit()
-    p_value = results.pvalues[1]
+    # #2. P-value
+    # x_train_const = sm.add_constant(x_train)
+    # model = sm.Logit(y_train, x_train_const)
+    # results = model.fit()
+    # p_value = results.pvalues[1]
 
     #3. AUC: area bajo la curva, mide el desempeño
     auc = roc_auc_score(y_test, r_logistica.predict_proba(x_test)[:, 1])
@@ -119,7 +119,9 @@ def getPrediction(a_viales : int, dn : int):
         "Precisión" : p,
         "Intercepciones" : i,
         "Coeficientes" : c,
-        "Error cuadratico medio": errorCM,
-        "P-value" : p_value,
+        #"Error cuadratico medio": errorCM,
+        #"P-value" : p_value,
         "AUC": auc
     }
+
+print(getPrediction(4, 0))
