@@ -1,0 +1,218 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Laboratorio Estructuras</title>
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/select.css" />
+    <link rel="stylesheet" href="./css/screen2.css" />
+    <link rel="stylesheet" href="./css/screen3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script type="text/javascript" src="/eel.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <div class="logo-details">
+        <i class="bx bxl-python icon"></i>
+        <div class="logo_name">Estructuras</div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <li>
+          <i class="bx bx-search"></i>
+          <input type="text" id="search-input" placeholder="Search..." />
+          <span class="tooltip">Search</span>
+        </li>
+        <li class="list-item">
+          <a href="./main.html">
+            <i class="bx bx-table"></i>
+            <span class="links_name">Tabla principal</span>
+          </a>
+          <span class="tooltip">Tabla principal</span>
+        </li>
+        <li class="list-item">
+          <a href="./estadisticas.html">
+            <i class="bx bx-bar-chart-alt"></i>
+            <span class="links_name">Estadísticas</span>
+          </a>
+          <span class="tooltip">Estadísticas</span>
+        </li>
+        <li class="list-item">
+          <a href="#">
+            <i class="bx bxs-network-chart"></i>
+            <span class="links_name">Predecir</span>
+          </a>
+          <span class="tooltip">Predecir</span>
+        </li>
+
+        <li class="profile">
+          <div class="profile-details">
+            <img src="./img/profile.jpeg" alt="profileImg" />
+            <div class="name_job">
+              <div class="name">Margarita G.</div>
+              <div class="job">Ph. D</div>
+            </div>
+          </div>
+          <i class="bx bx-log-out" id="log_out"></i>
+        </li>
+      </ul>
+    </div>
+
+    <section class="home-section">
+      <div class="statistics">
+        <h2>Añadir registro:</h2>
+        <div class="grid-form">
+          <div class="label">
+            <label for="peaton">Peatón:</label>
+            <input type="number" value="0" id="peaton" placeholder="Peatón" />
+          </div>
+          <div class="label">
+            <label for="automovil">Automóvil:</label>
+            <input
+              type="number"
+              value="0"
+              id="automovil"
+              placeholder="Automóvil"
+            />
+          </div>
+          <div class="label">
+            <label for="campaero">Campaero:</label>
+            <input
+              type="number"
+              value="0"
+              id="campaero"
+              placeholder="Campaero"
+            />
+          </div>
+          <div class="label">
+            <label for="camioneta">Camioneta</label>
+            <input
+              type="number"
+              value="0"
+              id="camioneta"
+              placeholder="Camioneta"
+            />
+          </div>
+          <div class="label">
+            <label for="micro">Micro:</label>
+            <input type="number" value="0" id="micro" placeholder="Micro" />
+          </div>
+          <div class="label">
+            <label for="buseta">Buseta:</label>
+            <input type="number" value="0" id="buseta" placeholder="Buseta" />
+          </div>
+          <div class="label">
+            <label for="bus">Bus:</label>
+            <input type="number" value="0" id="bus" placeholder="Bus" />
+          </div>
+          <div class="label">
+            <label for="camion">Camión:</label>
+            <input type="number" value="0" id="camion" placeholder="Camion" />
+          </div>
+          <div class="label">
+            <label for="volqueta">Volqueta:</label>
+            <input
+              type="number"
+              value="0"
+              id="volqueta"
+              placeholder="Volqueta"
+            />
+          </div>
+          <div class="label">
+            <label for="moto">Moto:</label>
+            <input type="number" value="0" id="moto" placeholder="Moto" />
+          </div>
+          <div class="label">
+            <label for="bicicleta">Bicicleta:</label>
+            <input
+              type="number"
+              value="0"
+              id="bicicleta"
+              placeholder="Bicicleta"
+            />
+          </div>
+          <div class="label">
+            <label for="horario">Horario:</label>
+            <!--SELECT-->
+            <label class="select" for="horario">
+              <select id="horario" required="required">
+                <option value="Diurno" selected="selected">Diurno</option>
+                <option value="Nocturno">Nocturno</option>
+              </select>
+              <svg>
+                <use xlink:href="#select-arrow-down"></use>
+              </svg>
+            </label>
+          </div>
+          <div class="label">
+            <label for="gravedad">Gravedad:</label>
+            <!--SELECT-->
+            <label class="select" for="gravedad">
+              <select id="gravedad" required="required">
+                <option value="Solo Daños" selected="selected">
+                  Solo Daños
+                </option>
+                <option value="Con Heridos">Con Heridos</option>
+                <option value="Con Muertos">Con Muertos</option>
+              </select>
+              <svg>
+                <use xlink:href="#select-arrow-down"></use>
+              </svg>
+            </label>
+          </div>
+          <div class="label">
+            <label for="">Enviar datos:</label>
+            <button id="submit">Añadir</button>
+          </div>
+        </div>
+        <h2>Utilizar modelo de predicción</h2>
+        <div class="grid-form">
+          <div class="label">
+            <label for="actores"># de actores viales:</label>
+            <input type="number" value="0" id="actores" placeholder="Actores viales" />
+          </div>
+          <div class="label">
+            <label for="horario-prediccion">Horario:</label>
+            <!--SELECT-->
+            <label class="select" for="horario-prediccion">
+              <select id="horario-prediccion" required="required">
+                <option value="Diurno" selected="selected">Diurno</option>
+                <option value="Nocturno">Nocturno</option>
+              </select>
+              <svg>
+                <use xlink:href="#select-arrow-down"></use>
+              </svg>
+            </label>
+          </div>
+          <div class="label">
+            <label for="">Obtener predicción:</label>
+            <button id="prediccion">Ejecutar modelo</button>
+          </div>
+          <!-- SVG Sprites-->
+          <svg class="sprites">
+            <symbol id="select-arrow-down" viewbox="0 0 10 6">
+              <polyline points="1 1 5 5 9 1"></polyline>
+            </symbol>
+          </svg>
+        </div>
+      </div>
+    </section>
+  </body>
+
+  <script src="./js/pythonIsWorking.js"></script>
+  <script src="./js/sidebar.js"></script>
+  <script src="./js/screen3.js"></script>
+</html>

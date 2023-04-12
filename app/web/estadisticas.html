@@ -1,0 +1,82 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Laboratorio Estructuras</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css//screen2.css" />
+    <script type="text/javascript" src="/eel.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <div class="logo-details">
+        <i class="bx bxl-python icon"></i>
+        <div class="logo_name">Estructuras</div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <li>
+          <i class="bx bx-search"></i>
+          <input type="text" id="search-input" placeholder="Search..." />
+          <span class="tooltip">Search</span>
+        </li>
+        <li class="list-item">
+          <a href="./main.html">
+            <i class="bx bx-table"></i>
+            <span class="links_name">Tabla principal</span>
+          </a>
+          <span class="tooltip">Tabla principal</span>
+        </li>
+        <li class="list-item">
+          <a href="#">
+            <i class="bx bx-bar-chart-alt"></i>
+            <span class="links_name">Estadísticas</span>
+          </a>
+          <span class="tooltip">Estadísticas</span>
+        </li>
+        <li class="list-item">
+          <a href="./prediccion.html">
+            <i class="bx bxs-network-chart"></i>
+            <span class="links_name">Predecir</span>
+          </a>
+          <span class="tooltip">Predecir</span>
+        </li>
+
+        <li class="profile">
+          <div class="profile-details">
+            <img src="./img/profile.jpeg" alt="profileImg" />
+            <div class="name_job">
+              <div class="name">Margarita G.</div>
+              <div class="job">Ph. D</div>
+            </div>
+          </div>
+          <i class="bx bx-log-out" id="log_out"></i>
+        </li>
+      </ul>
+    </div>
+
+    <section class="home-section">
+      <h2>Histórico de actores viales</h2>
+      <div style="width: 800px"><canvas id="chart"></canvas></div>
+      <div class="statistics"></div>
+    </section>
+  </body>
+
+  <script src="./js/pythonIsWorking.js"></script>
+  <script src="./js/sidebar.js"></script>
+  <script src="./js/screen2.js"></script>
+</html>

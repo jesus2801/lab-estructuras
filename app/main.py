@@ -1,4 +1,7 @@
 import eel
+import screen1
+import screen2
+import screen3
 
 @eel.expose
 def pythonIsWorking():
